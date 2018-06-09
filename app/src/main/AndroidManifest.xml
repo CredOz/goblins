@@ -22,7 +22,8 @@
             android:name=".MainPage"
             android:label="@string/title_activity_main_page"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".available_orders"></activity>
+        <activity android:name=".available_orders" />
+        <activity android:name=".OrderDetails"></activity>
     </application>
 
 </manifest>
