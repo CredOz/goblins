@@ -26,5 +26,7 @@
         android:layout_alignParentTop="true"
         android:layout_alignStart="@+id/btn_useService"
         android:layout_marginTop="197dp"
-        android:text="Provide Service" />
+        android:text="Provide Service"
+        android:onClick="provider_activity"
+        />
 </RelativeLayout>

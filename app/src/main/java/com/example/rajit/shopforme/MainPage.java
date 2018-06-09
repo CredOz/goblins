@@ -148,4 +148,9 @@ public class MainPage extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+    public void provider_activity(View v){
+        Intent goToMainActivity = new Intent(MainPage.this, HomerDisplayActivity.class);
+        startActivity(goToMainActivity);
+    }
 }
