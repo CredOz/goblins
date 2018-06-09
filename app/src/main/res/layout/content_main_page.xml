@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".MainPage"
+    tools:showIn="@layout/app_bar_main_page">
+
+
+    <Button
+        android:id="@+id/btn_useService"
+        android:layout_width="186dp"
+        android:layout_height="60dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="96dp"
+        android:layout_marginTop="107dp"
+        android:text="Use Service" />
+
+    <Button
+        android:id="@+id/btn_provideService"
+        android:layout_width="186dp"
+        android:layout_height="60dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/btn_useService"
+        android:layout_marginTop="197dp"
+        android:text="Provide Service" />
+</RelativeLayout>

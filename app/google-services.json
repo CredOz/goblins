@@ -1,0 +1,59 @@
+{
+  "project_info": {
+    "project_number": "1063669471918",
+    "firebase_url": "https://shopforme-fd075.firebaseio.com",
+    "project_id": "shopforme-fd075",
+    "storage_bucket": "shopforme-fd075.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1063669471918:android:6748571a5b13fe8e",
+        "android_client_info": {
+          "package_name": "com.example.rajit.shopforme"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1063669471918-qg28j3jh11dvci0nlua2v5l8vtmtcju0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.rajit.shopforme",
+            "certificate_hash": "6f15d997d8bc2c94fa75ff108e8845d9a721ce89"
+          }
+        },
+        {
+          "client_id": "1063669471918-onji0n6dqkcb3e23orpsbqqdpjvgkkba.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "1063669471918-onji0n6dqkcb3e23orpsbqqdpjvgkkba.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCsbEm7aHS3ebL38f3FD4xNAYlnfTLqUDI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1063669471918-onji0n6dqkcb3e23orpsbqqdpjvgkkba.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
