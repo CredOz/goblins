@@ -28,6 +28,8 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Set;
 
+import static java.lang.Double.valueOf;
+
 public class HomerDisplayActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
@@ -61,29 +63,29 @@ public class HomerDisplayActivity extends FragmentActivity implements OnMapReady
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        ref.addChildEventListener(new ChildEventListener() {
+        ref.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String prevChildKey) {
-                LatLng newLocation = new LatLng(
-                        34,
-                        23
-                );
-                mMap.addMarker(new MarkerOptions()
-                        .position(newLocation)
-                        .title(dataSnapshot.getKey()));
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String n = dataSnapshot.getKey();
+                HashMap<String, HashMap<String, Object>> p = new HashMap<>();
+                p = (HashMap<String, HashMap<String, Object>>) dataSnapshot.getValue();
+                Set<String> name = p.keySet();
+                int i=0;
+                for(Iterator<String> it = name.iterator(); it.hasNext(); i++){
+                    final String mm = it.next();
+                    final HashMap<String, Object> det = p.get(mm);
+                    LatLng sydney = new LatLng(
+                            valueOf(det.get("longitude").toString()),
+                            valueOf(det.get("latitude").toString()));
+                    mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in"+mm));
+                    mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+                }
             }
 
             @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String prevChildKey) {}
-
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {}
-
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String prevChildKey) {}
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {}
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                System.out.println(databaseError.getCode());
+            }
         });
 
         // Add a marker in Sydney and move the camera

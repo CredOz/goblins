@@ -9,6 +9,8 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Set;
 
 public class OrderDetails extends AppCompatActivity {
 
@@ -25,9 +27,12 @@ public class OrderDetails extends AppCompatActivity {
         //String m = getIntent().getStringExtra("Key");
         Log.d("lll", myList.get("latitude").toString());
         //System.out.println("myList.get(\"latitude\") = " + myList.get("latitude"));
+        Set x = myList.keySet();
+        String[] y = {myList.get("longitude").toString(), myList.get("latitude").toString()};
+
 
         ListView listView = (ListView) findViewById(R.id.orderList);
-        ArrayAdapter array = new ArrayAdapter(this, android.R.layout.simple_list_item_1, myList.keySet().toArray());
+        ArrayAdapter array = new ArrayAdapter(this, android.R.layout.simple_list_item_1, y);
         listView.setAdapter(array);
     }
 }

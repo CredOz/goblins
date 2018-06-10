@@ -150,7 +150,7 @@ public class MainPage extends AppCompatActivity
     }
 
     public void provider_activity(View v){
-        Intent goToMainActivity = new Intent(MainPage.this, available_orders.class);
+        Intent goToMainActivity = new Intent(MainPage.this, HomerDisplayActivity.class);
         startActivity(goToMainActivity);
     }
 }
