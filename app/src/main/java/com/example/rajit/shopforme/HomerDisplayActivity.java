@@ -16,6 +16,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -44,52 +45,7 @@ public class HomerDisplayActivity extends FragmentActivity implements OnMapReady
         mapFragment.getMapAsync(this);
 
         ref = FirebaseDatabase.getInstance().getReference().child("order");
-        layout = (LinearLayout) findViewById(R.id.orderDetails);
-
-        ref.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                String n = dataSnapshot.getKey();
-                HashMap<String, ArrayList<String>> p = new HashMap<>();
-                p = (HashMap<String, ArrayList<String>>) dataSnapshot.getValue();
-                Set<String> name = p.keySet();
-                int i=0;
-                for(Iterator<String> it = name.iterator(); it.hasNext(); i++){
-                    final String mm = it.next();
-                    buttonOrder = new Button(HomerDisplayActivity.this);
-                    buttonOrder.setId(i+1);
-                    buttonOrder.setText(mm);
-                    buttonOrder.setTag(i);
-                    buttonOrder.setBackgroundResource(R.drawable.marker);
-                    layout.addView(buttonOrder);
-                    //final TextView ll = (TextView) findViewById(R.id.textView);
-                    final ArrayList<String> det = p.get(mm);
-                    buttonOrder.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            Log.d("dd", det.toString());
-                            Intent goToMainActivity = new Intent(HomerDisplayActivity.this, OrderDetails.class);
-                            goToMainActivity.putExtra("Key", mm);
-                            goToMainActivity.putExtra("Key2", det);
-                            startActivity(goToMainActivity);
-                        }
-                    });
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                System.out.println(databaseError.getCode());
-            }
-        });
     }
-
-    private View.OnClickListener mOrderListner = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            Log.v("dimuthu", "success");
-        }
-    };
 
 
     /**
@@ -104,6 +60,31 @@ public class HomerDisplayActivity extends FragmentActivity implements OnMapReady
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+
+        ref.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String prevChildKey) {
+                LatLng newLocation = new LatLng(
+                        34,
+                        23
+                );
+                mMap.addMarker(new MarkerOptions()
+                        .position(newLocation)
+                        .title(dataSnapshot.getKey()));
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String prevChildKey) {}
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {}
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String prevChildKey) {}
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {}
+        });
 
         // Add a marker in Sydney and move the camera
         LatLng sydney = new LatLng(-34, 151);

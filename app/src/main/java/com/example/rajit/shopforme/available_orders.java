@@ -43,8 +43,8 @@ public class available_orders extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 String n = dataSnapshot.getKey();
-                HashMap<String, ArrayList<String>> p = new HashMap<>();
-                p = (HashMap<String, ArrayList<String>>) dataSnapshot.getValue();
+                HashMap<String, HashMap<String, Object>> p = new HashMap<>();
+                p = (HashMap<String, HashMap<String, Object>>) dataSnapshot.getValue();
                 Set<String> name = p.keySet();
                 int i=0;
                 for(Iterator<String> it = name.iterator(); it.hasNext(); i++){
@@ -55,7 +55,8 @@ public class available_orders extends AppCompatActivity {
                     buttonOrder.setTag(i);
                     layout.addView(buttonOrder);
                     final TextView ll = (TextView) findViewById(R.id.textView);
-                    final ArrayList<String> det = p.get(mm);
+                    final HashMap<String, Object> det = p.get(mm);
+                    ll.setText(det.get("latitude").toString());
                     buttonOrder.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
